@@ -5,9 +5,9 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = {
-    target: ['web', 'es5'],
+    target: 'web',
     context: path.resolve(__dirname, 'src'),
-    mode: 'production',
+    mode: 'development',
     entry: {
         scripts: './js/index.js',
         vendor: './js/tabs.js',
@@ -19,12 +19,12 @@ module.exports = {
     },
     devtool: 'source-map',
     devServer: {
-        // port: 3000,
         open: true,
         hot: true,
         watchContentBase: true
     },
     optimization: {
+        runtimeChunk: 'single',
         splitChunks: {
             chunks: 'all'
         },
@@ -63,16 +63,11 @@ module.exports = {
                 presets: [
                     [
                       '@babel/preset-env',
-                      {
-                        targets: {
-                          ie: 11,
-                        },
-                      }
                     ]
                   ],
               }
             }
           }
         ],
-      },
+    },
 }
