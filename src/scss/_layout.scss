@@ -32,12 +32,23 @@ a {
 
 .header {
     display: flex;
+    z-index: 100;
+    width: 100%;
     padding-top: 20px;
     padding-bottom: 20px;
     box-shadow: inset 0 -1px 0 $c-border;
+    transition: all .4s linear;
 
     @media (max-width: $mobile-max) {
         flex-wrap: wrap;
+    }
+
+    &-fixed {
+        position: fixed;
+        top: 0;
+        left: 0;
+        padding-top: 10px;
+        padding-bottom: 10px;
     }
 
     &-logo {
@@ -45,6 +56,7 @@ a {
         align-items: center;
         justify-content: center;
         flex-shrink: 0;
+        margin: 0 auto;
 
         @media (min-width: $tablet-min) {
             margin-right: 40px;
@@ -61,6 +73,7 @@ a {
             width: 150px;
             height: 120px;
             fill: $c-highlight;
+            transition: all .4s linear;
 
             @media (max-width: $mobile-max) {
                 width: 50px;
