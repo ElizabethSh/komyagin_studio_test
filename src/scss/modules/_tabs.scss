@@ -1,7 +1,25 @@
 .tabs {
+    &.closed .tab-header-wrap {
+        @media (max-width: $mobile-max) {
+            height: 0;
+            overflow: hidden;
+            transition: .3s linear;
+        }
+    }
+
+    &.closed .tab-header-active::before {
+        content: '+';
+    }
+
     .tab-header-wrap {
         display: flex;
+        flex-direction: column;
         padding: 0 1px;
+        height: 160px;
+
+        @media (min-width: $tablet-min) {
+            flex-direction: row;
+        }
     }
 
     .tab-header {
@@ -9,8 +27,36 @@
         font-weight: bold;
         transition: color .2s linear;
 
+        @media (max-width: $mobile-max)  {
+            box-shadow: 0 1px 0 #fff, 0 0 0 1px $c-border;
+        }
+
+        &-active {
+            position: relative;
+            color: $c-highlight;
+            padding: 8px 20px;
+            font-weight: bold;
+
+            @media (min-width: $tablet-min) {
+                display: none;
+            }
+
+            &::before {
+                content: '-';
+                position: absolute;
+                right: 10px;
+                top: 50%;
+                transform: translate(0, -50%);
+                font-weight: normal;
+                font-size: 25px;
+            }
+        }
+
         &.active {
             box-shadow: 0 1px 0 #fff, 0 0 0 1px $c-border;
+            @media (max-width: $mobile-max) {
+                border-bottom: 1px solid $c-border;
+            }
         }
 
         &:not(.active) {
