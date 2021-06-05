@@ -5,7 +5,6 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = {
-    target: 'web',
     context: path.resolve(__dirname, 'src'),
     mode: 'development',
     entry: {
@@ -20,8 +19,7 @@ module.exports = {
     devtool: 'source-map',
     devServer: {
         open: true,
-        hot: true,
-        watchContentBase: true
+        contentBase: path.resolve(__dirname, './dist'),
     },
     optimization: {
         runtimeChunk: 'single',
