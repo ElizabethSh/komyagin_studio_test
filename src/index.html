@@ -14,11 +14,11 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="46" height="36" fill="none" viewBox="0 0 46 36">
                     <defs>
                         <linearGradient id="paint0_linear" x1="7.67" x2="40.36" y1="37.81" y2="4.61" gradientUnits="userSpaceOnUse">
-                            <stop stop-color="#F26D21"/>
-                            <stop offset="1" stop-color="#FDD106"/>
+                            <stop stop-color="#F26D21"></stop>
+                            <stop offset="1" stop-color="#FDD106"></stop>
                         </linearGradient>
                     </defs>
-                    <path fill="url(#paint0_linear)" fill-rule="evenodd" d="M24.86.34c9.52-1.86 18.79 4.12 20.7 13.34C48.99 30.18 31.5 40 14.49 34.43c2.57-.95 4.5-2.72 4.95-4.83-5.86 3.48-13.23 3.53-19.43.64 4-.71 11.98-4.76 13.34-8.41a13.4 13.4 0 00-8.71 3.73c1.2-7.36 7.58-12.4 14.19-13.74-2.04-1.53-5.66-1.25-7.33.3A17.34 17.34 0 0124.86.34z" clip-rule="evenodd"/>
+                    <path fill="url(#paint0_linear)" fill-rule="evenodd" d="M24.86.34c9.52-1.86 18.79 4.12 20.7 13.34C48.99 30.18 31.5 40 14.49 34.43c2.57-.95 4.5-2.72 4.95-4.83-5.86 3.48-13.23 3.53-19.43.64 4-.71 11.98-4.76 13.34-8.41a13.4 13.4 0 00-8.71 3.73c1.2-7.36 7.58-12.4 14.19-13.74-2.04-1.53-5.66-1.25-7.33.3A17.34 17.34 0 0124.86.34z" clip-rule="evenodd"></path>
                 </svg>
             </a>
         </div>
@@ -76,10 +76,14 @@
                         <p>Здесь ничего нет</p>
                     </li>
                     <li class="tab-content js-tab-content">
-                        <p>Здесь ничего нет1</p>
+                        <div class="tab-content-container">
+                            <img class="tab-content-img image-draggable" src="<%= require('./assets/images/pic_1.jpg') %>" width="990" height="619" alt="Photo of lake">
+                        </div>
                     </li>
                     <li class="tab-content js-tab-content">
-                        <p>Здесь ничего нет2</p>
+                        <div class="tab-content-container container-moved">
+                            <img class="tab-content-img image-moved" src="<%=require('./assets/images/pic_2.jpg') %>" width="1600" height="939" alt="Photo of waterfall">
+                        </div>
                     </li>
                 </ul>
             </div>
