@@ -1,4 +1,6 @@
 import "../scss/styles.scss";
+import "./drugDrop.js";
+import "./move.js";
 
 const header = document.querySelector(`.header`);
 const logo = document.querySelector(`.header-logo svg`);
