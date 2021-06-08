@@ -15,7 +15,10 @@
         display: flex;
         flex-direction: column;
         padding: 0 1px;
-        height: 160px;
+
+        @media (max-width: $mobile-max) {
+            height: 160px;
+        }
 
         @media (min-width: $tablet-min) {
             flex-direction: row;
@@ -74,9 +77,23 @@
 
     .tab-content {
         padding: 30px 20px;
+        min-height: 400px;
 
         &:not(.active) {
             display: none;
         }
+    }
+
+    .tab-content-container {
+        position: relative; // 1. иначе не работает overflow: hidden;
+        overflow: hidden;
+        min-height: 350px;
+    }
+
+    .tab-content-img {
+        position: absolute; // 2. иначе фото сжимается по размеру родителя
+        max-width: none;
+        width: auto;    // 3. для показа полноразмерного фото
+        cursor: move;
     }
 }
