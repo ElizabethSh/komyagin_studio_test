@@ -3,29 +3,26 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require("terser-webpack-plugin");
+const webpack = require(`webpack`);
 
 module.exports = {
     context: path.resolve(__dirname, 'src'),
-    mode: 'development',
     entry: {
         scripts: './js/index.js',
         vendor: './js/tabs.js',
     },
     output: {
-        filename: 'js/[name].min.js',
+        filename: './js/[name].min.js',
         path: path.resolve(__dirname, 'dist'),
         clean: true
     },
-    devtool: 'source-map',
+    devtool: false,
     devServer: {
         open: true,
-        contentBase: path.resolve(__dirname, './dist'),
+        hot: true,
+        contentBase: path.resolve(__dirname, 'dist'),
     },
     optimization: {
-        runtimeChunk: 'single',
-        splitChunks: {
-            chunks: 'all'
-        },
         minimizer: [
             new TerserPlugin(),
             new CssMinimizerPlugin()
@@ -33,19 +30,20 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: './index.html',
-            minify: {
-                collapseWhitespace: true
-            }
+            template: './index.html'
         }),
         new MiniCssExtractPlugin({
             filename: 'css/styles.min.css'
         }),
+        new webpack.SourceMapDevToolPlugin({
+            filename: '[file].map',
+            exclude: /vendor.*.*/
+        })
     ],
     module: {
         rules: [
           {
-            test: /\.(s[ac]ss|css)$/i,
+            test: /\.s[ac]ss$/i,
             use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader'],
           },
           {
@@ -63,6 +61,10 @@ module.exports = {
             use: [
               {
                 loader: 'file-loader',
+                options: {
+                    name: 'img/[name].[ext]',
+                    esModule: false
+                }
               },
             ],
           },
