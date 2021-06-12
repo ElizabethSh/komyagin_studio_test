@@ -1,7 +1,10 @@
 module.exports = {
     plugins: [
       require('postcss-preset-env')({
-        browsers: 'last 2 versions',
+        browsers: [
+            "ie >= 11",
+            "last 2 version"
+          ],
       }),
     ],
 };
