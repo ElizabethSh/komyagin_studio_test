@@ -1,7 +1,7 @@
 body {
     display: flex;
     flex-direction: column;
-    height: 100vh;  // IE doesn't understand min-height
+    min-height: 100vh;
     font-family: $font-main;
     font-size: 16px;
     line-height: 1.5;
