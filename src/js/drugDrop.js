@@ -1,37 +1,33 @@
-const img = document.querySelector(`.image-draggable`);
+const img = document.querySelector('.image-draggable');
+const container = document.querySelector('.container-draggable');
 
 img.addEventListener('mousedown', (evt) => {
     evt.preventDefault();
+    const imgSize = img.getBoundingClientRect();
+    const containerSize = container.getBoundingClientRect();
 
-    let startCoords = {
-        x: evt.clientX,
-        y: evt.clientY
+    const shift = {
+        x: evt.clientX - imgSize.left,
+        y: evt.clientY - imgSize.top
     };
 
     const mousemoveHandler = (moveEvt) => {
         moveEvt.preventDefault();
 
-        const shift = {
-            x: startCoords.x - moveEvt.clientX,
-            y: startCoords.y - moveEvt.clientY
-        };
+        img.style.left = moveEvt.pageX - containerSize.left - shift.x + 'px';
+        img.style.top = moveEvt.pageY - containerSize.top - shift.y + 'px';
 
-        startCoords = {
-            x: moveEvt.clientX,
-            y: moveEvt.clientY
-        };
-
-        img.style.top = img.offsetTop - shift.y + 'px';
-        img.style.left = img.offsetLeft - shift.x + 'px';
-
-
-    }
+        if (moveEvt.pageX < containerSize.left || moveEvt.pageX > containerSize.right ||
+            moveEvt.pageY < containerSize.top || moveEvt.pageY > containerSize.bottom) {
+                mouseupHandler();
+            }
+    };
 
     const mouseupHandler = () => {
         document.removeEventListener('mousemove', mousemoveHandler);
         document.removeEventListener('mouseup', mouseupHandler);
-    }
+    };
 
     document.addEventListener('mousemove', mousemoveHandler);
     document.addEventListener('mouseup', mouseupHandler);
-})
+});
